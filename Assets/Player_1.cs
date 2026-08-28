@@ -26,6 +26,8 @@ public class PlayerMouse : MonoBehaviour
         targetPosition = rb2d.position;
     }
 
+
+
     void Update()
     {
         if (mainCamera == null)
@@ -60,3 +62,5 @@ public class PlayerMouse : MonoBehaviour
         rb2d.MovePosition(newPosition);
     }
 }
+
+

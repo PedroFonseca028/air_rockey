@@ -80,38 +80,32 @@ public class Puck : MonoBehaviour
         Vector2 position = rb2d.position;
         Vector2 velocity = rb2d.linearVelocity;
 
-        // Pega o tamanho físico REAL do CircleCollider2D
         float radiusX = circleCollider.bounds.extents.x;
         float radiusY = circleCollider.bounds.extents.y;
 
-        // Parede esquerda
         if (position.x - radiusX < minX)
         {
             position.x = minX + radiusX;
             velocity.x = Mathf.Abs(velocity.x);
         }
 
-        // Parede direita
         if (position.x + radiusX > maxX)
         {
             position.x = maxX - radiusX;
             velocity.x = -Mathf.Abs(velocity.x);
         }
 
-        // A bola inteira precisa caber dentro da abertura do gol
         bool canEnterGoal =
             Mathf.Abs(position.x) + radiusX <= goalHalfWidth;
 
         if (!canEnterGoal)
         {
-            // Parede inferior
             if (position.y - radiusY < minY)
             {
                 position.y = minY + radiusY;
                 velocity.y = Mathf.Abs(velocity.y);
             }
 
-            // Parede superior
             if (position.y + radiusY > maxY)
             {
                 position.y = maxY - radiusY;
@@ -166,7 +160,6 @@ public class Puck : MonoBehaviour
         if (resetting)
             return;
 
-        // PLAYER FEZ GOL
         if (other.CompareTag("GoalTop"))
         {
             Debug.Log("Gol do jogador!");
@@ -179,7 +172,6 @@ public class Puck : MonoBehaviour
             StartCoroutine(ResetPuck());
         }
 
-        // IA FEZ GOL
         else if (other.CompareTag("GoalBottom"))
         {
             Debug.Log("Gol da IA!");

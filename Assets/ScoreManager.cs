@@ -24,9 +24,6 @@ public class ScoreManager : MonoBehaviour
         UpdateScore();
     }
 
-    // ============================
-    // PONTO DO JOGADOR
-    // ============================
 
     public void PlayerScored()
     {
@@ -37,9 +34,6 @@ public class ScoreManager : MonoBehaviour
         ShowPopup("GOL DO JOGADOR!");
     }
 
-    // ============================
-    // PONTO DA IA
-    // ============================
 
     public void AIScored()
     {
@@ -50,9 +44,6 @@ public class ScoreManager : MonoBehaviour
         ShowPopup("GOL DA IA!");
     }
 
-    // ============================
-    // ATUALIZA O PLACAR
-    // ============================
 
     private void UpdateScore()
     {
@@ -63,13 +54,10 @@ public class ScoreManager : MonoBehaviour
             $"IA   {aiScore}   x   {playerScore}   VOCÊ";
     }
 
-    // ============================
-    // CRIA TODA A INTERFACE
-    // ============================
 
     private void CreateUI()
     {
-        // Canvas
+
         GameObject canvasObject = new GameObject(
             "GameCanvas",
             typeof(Canvas),
@@ -86,7 +74,6 @@ public class ScoreManager : MonoBehaviour
         canvas.sortingOrder = 100;
 
 
-        // Canvas Scaler
         CanvasScaler scaler =
             canvasObject.GetComponent<CanvasScaler>();
 
@@ -100,11 +87,6 @@ public class ScoreManager : MonoBehaviour
             CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
 
         scaler.matchWidthOrHeight = 0.5f;
-
-
-        // ============================
-        // PAINEL DO PLACAR
-        // ============================
 
         GameObject scorePanel =
             new GameObject(
@@ -145,8 +127,6 @@ public class ScoreManager : MonoBehaviour
 
         scoreBackground.raycastTarget = false;
 
-
-        // Texto do placar
         GameObject scoreTextObject =
             new GameObject(
                 "ScoreText",
@@ -174,11 +154,6 @@ public class ScoreManager : MonoBehaviour
             scoreTextObject.GetComponent<RectTransform>();
 
         Stretch(scoreRect);
-
-
-        // ============================
-        // POPUP DE GOL
-        // ============================
 
         popupPanel =
             new GameObject(
@@ -219,8 +194,6 @@ public class ScoreManager : MonoBehaviour
 
         popupBackground.raycastTarget = false;
 
-
-        // Texto popup
         GameObject popupTextObject =
             new GameObject(
                 "PopupText",
@@ -250,13 +223,9 @@ public class ScoreManager : MonoBehaviour
         Stretch(popupTextRect);
 
 
-        // Começa escondido
         popupPanel.SetActive(false);
     }
 
-    // ============================
-    // CONFIGURA TEXTO TMP
-    // ============================
 
     private void ConfigureText(TMP_Text text)
     {
@@ -283,9 +252,6 @@ public class ScoreManager : MonoBehaviour
         text.outlineColor = Color.black;
     }
 
-    // ============================
-    // FAZ OBJETO OCUPAR O PAI
-    // ============================
 
     private void Stretch(RectTransform rect)
     {
@@ -296,9 +262,6 @@ public class ScoreManager : MonoBehaviour
         rect.offsetMax = Vector2.zero;
     }
 
-    // ============================
-    // MOSTRA POPUP
-    // ============================
 
     private void ShowPopup(string message)
     {
@@ -332,10 +295,6 @@ public class ScoreManager : MonoBehaviour
 
         popupCoroutine = null;
     }
-
-    // ============================
-    // RESET OPCIONAL
-    // ============================
 
     public void ResetScore()
     {
